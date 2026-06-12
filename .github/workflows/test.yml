@@ -1,4 +1,4 @@
-name: Test Workflow
+name: AI Agent
 
 on:
 
@@ -6,12 +6,22 @@ on:
 
 jobs:
 
-  hello:
+  run-agent:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Hello
+      - uses: actions/checkout@v4
 
-        run: echo "Hello Agent"
+      - name: Setup Python
+
+        uses: actions/setup-python@v5
+
+        with:
+
+          python-version: '3.11'
+
+      - name: Run Agent
+
+        run: python monitor.py
