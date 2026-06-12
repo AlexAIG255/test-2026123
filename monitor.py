@@ -71,3 +71,49 @@ Path(
 print("Report Saved")
 
 print("\nDone")
+
+from pathlib import Path
+
+watchlist = Path(
+
+    "knowledge/watchlist.md"
+
+).read_text(
+
+    encoding="utf-8"
+
+)
+
+report = f"""
+
+# Daily Report
+
+日期：
+
+{datetime.now()}
+
+---
+
+当前观察池
+
+{watchlist}
+
+---
+
+Agent总结：
+
+继续观察主力资金变化。
+
+"""
+
+Path(
+
+    "reports/daily_report.md"
+
+).write_text(
+
+    report,
+
+    encoding="utf-8"
+
+)
