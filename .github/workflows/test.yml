@@ -20,8 +20,24 @@ jobs:
 
         with:
 
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Run Agent
 
-        run: python monitor.py
+        run: |
+
+          python monitor.py
+
+      - name: Send Mail
+
+        env:
+
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+
+        run: |
+
+          python send_mail.py
