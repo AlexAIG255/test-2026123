@@ -39,10 +39,11 @@ jobs:
           python monitor.py
           
       - name: Test Market Data
-      
-        run: |
-          python market_data.py
 
+        run: |
+
+          python market_data.py
+          
       - name: Send WeCom Message
 
         env:
