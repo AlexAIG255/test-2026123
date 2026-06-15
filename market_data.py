@@ -1,13 +1,13 @@
-import akshare as ak
+import requests
 
-stock = ak.stock_zh_a_hist(
+url = "https://hq.sinajs.cn/list=sh600409"
 
-    symbol="600409",
+headers = {
 
-    period="daily",
+    "Referer": "https://finance.sina.com.cn"
 
-    adjust=""
+}
 
-)
+r = requests.get(url, headers=headers)
 
-print(stock.tail())
+print(r.text)
