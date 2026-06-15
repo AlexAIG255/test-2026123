@@ -1,4 +1,4 @@
-name: AI Agent
+name: AI Stock Agent
 
 on:
 
@@ -12,7 +12,9 @@ jobs:
 
     steps:
 
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+
+        uses: actions/checkout@v4
 
       - name: Setup Python
 
@@ -22,8 +24,24 @@ jobs:
 
           python-version: "3.11"
 
+      - name: Install Packages
+
+        run: |
+
+          pip install requests
+
       - name: Run Agent
 
         run: |
 
           python monitor.py
+
+      - name: Send WeCom Message
+
+        env:
+
+          WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK }}
+
+        run: |
+
+          python send_wecom.py
