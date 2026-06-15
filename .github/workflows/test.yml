@@ -37,6 +37,11 @@ jobs:
         run: |
 
           python monitor.py
+          
+      - name: Test Market Data
+      
+        run: |
+          python market_data.py
 
       - name: Send WeCom Message
 
@@ -47,3 +52,4 @@ jobs:
         run: |
 
           python send_wecom.py
+          
