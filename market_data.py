@@ -1,19 +1,9 @@
 import requests
 
-def get_stock(code):
+code="sh600409"
 
-    if code.startswith("6"):
+url=f"https://qt.gtimg.cn/q={code}"
 
-        symbol=f"sh{code}"
+r=requests.get(url)
 
-    else:
-
-        symbol=f"sz{code}"
-
-    url=f"https://qt.gtimg.cn/q={symbol}"
-
-    text=requests.get(url).text
-
-    return text
-
-print(get_stock("600409"))
+print(r.text)
