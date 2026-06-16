@@ -1,0 +1,13 @@
+STOCK_CODE = "600409"
+
+STOCK_NAME = "三友化工"
+
+MA_SHORT = 5
+
+MA_MID = 10
+
+MA_LONG = 20
+
+ALERT_UP = 5
+
+ALERT_DOWN = -5
