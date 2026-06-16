@@ -1,35 +1,23 @@
-from datetime import datetime
+from market_data import get_stock_data
 
-def analyze():
+from technical import calculate_indicators
 
-    report=f"""
+from technical import macd
 
-# AI分析日报
+from signal import generate_signal
 
-日期:
+code = "600409"
 
-{datetime.now()}
+df = get_stock_data(code)
 
-股票:
+df = calculate_indicators(df)
 
-600409 三友化工
+df = macd(df)
 
-趋势:
+signal, score = generate_signal(df)
 
-震荡偏强
+print("股票:", code)
 
-建议:
+print("信号:", signal)
 
-持有
-
-风险:
-
-跌破MA10减仓
-
-"""
-
-    return report
-
-if __name__=="__main__":
-
-    print(analyze())
+print("评分:", score)
