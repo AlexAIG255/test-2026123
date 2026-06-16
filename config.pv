@@ -1,13 +1,17 @@
-STOCK_CODE = "600409"
+# config.py
 
-STOCK_NAME = "三友化工"
+STOCKS = [
 
-MA_SHORT = 5
+    "600409",  # 三友化工
 
-MA_MID = 10
+    "600036",  # 招商银行
 
-MA_LONG = 20
+]
 
-ALERT_UP = 5
+BUY_THRESHOLD = 70
 
-ALERT_DOWN = -5
+SELL_THRESHOLD = 30
+
+WECOM_WEBHOOK = ""
+
+GEMINI_API_KEY = ""
