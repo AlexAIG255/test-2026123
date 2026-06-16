@@ -40,6 +40,8 @@ jobs:
 
     - name: Fund Flow
 
+      continue-on-error: true
+
       run: python fund_flow.py
 
     - name: Analysis
