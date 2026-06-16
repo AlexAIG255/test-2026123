@@ -12,48 +12,44 @@ jobs:
 
     steps:
 
-      - name: Checkout Repository
+    - name: Checkout Repository
 
-        uses: actions/checkout@v4
+      uses: actions/checkout@v4
 
-      - name: Setup Python
+    - name: Setup Python
 
-        uses: actions/setup-python@v5
+      uses: actions/setup-python@v5
 
-        with:
+      with:
 
-          python-version: "3.11"
+        python-version: "3.11"
 
-      - name: Install Packages
+    - name: Install Packages
 
-        run: |
+      run: |
 
-          pip install requests
-          pip install pandas
-          pip install akshare
+        pip install requests
 
-      - name: Run Agent
+        pip install pandas
 
-        run: |
+        pip install akshare
 
-          python monitor.py
-          - name: Market Data
+    - name: Market Data
 
-        run: python market_data.py
-        
-      - name: Fund Flow
+      run: python market_date.py
 
-        run: python fund_flow.py
+    - name: Fund Flow
 
-      - name: Analysis
-      
-        run: python analysis.py
+      run: python fund_flow.py
 
-      - name: Monitor
+    - name: Analysis
 
-        run: python monitor.py
+      run: python analysis.py
 
-      - name: Send WeCom
-       
-        run: python send_wecom.py
-          
+    - name: Monitor
+
+      run: python monitor.py
+
+    - name: Send WeCom
+
+      run: python send_wecom.py
