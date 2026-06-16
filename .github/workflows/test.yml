@@ -48,6 +48,8 @@ jobs:
 
         pip install akshare
 
+        pip install google-generativeai
+
     - name: Market Data
 
       run: python market_data.py
