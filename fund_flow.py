@@ -1,21 +1,19 @@
-import requests
+import akshare as ak
 
-def get_fund_flow():
+import pandas as pd
 
-    url="https://push2.eastmoney.com/api/qt/clist/get"
+try:
 
-    params={
+    df = ak.stock_individual_fund_flow(stock="600409")
 
-        "pn":"1",
+    print(df.tail())
 
-        "pz":"20",
+except Exception as e:
 
-        "fid":"f62"
+    print("Fund Flow Error:", e)
 
-    }
+    pd.DataFrame({
 
-    r=requests.get(url,params=params)
+        "error": [str(e)]
 
-    return r.text
-
-print(get_fund_flow())
+    }).to_csv("fund_flow.csv", index=False)
