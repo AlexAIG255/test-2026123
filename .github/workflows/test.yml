@@ -36,7 +36,7 @@ jobs:
 
     - name: Market Data
 
-      run: python market_date.py
+      run: python market_data.py
 
     - name: Fund Flow
 
