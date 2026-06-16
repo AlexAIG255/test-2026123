@@ -1,119 +1,21 @@
-from pathlib import Path
+from analysis import analyze
 
-from datetime import datetime
+import requests
 
-print("=" * 50)
+import os
 
-print("AI Trading Agent")
+report=analyze()
 
-print("=" * 50)
+print(report)
 
-print("\nLoading Skills...")
+with open(
 
-skills_path = Path("skills")
+    "reports/daily_report.md",
 
-for file in skills_path.glob("*.md"):
-
-    print(f"\n[{file.name}]")
-
-    content = file.read_text(
-
-        encoding="utf-8"
-
-    )
-
-    print(content[:200])
-
-print("\nLoading Knowledge...")
-
-knowledge_path = Path("knowledge")
-
-for file in knowledge_path.glob("*.md"):
-
-    print(f"\n[{file.name}]")
-
-    content = file.read_text(
-
-        encoding="utf-8"
-
-    )
-
-    print(content[:200])
-
-print("\nGenerating Report...")
-
-report = f"""
-
-# Daily Report
-
-Date:
-
-{datetime.now()}
-
-Status:
-
-Agent Running Normal
-
-"""
-
-Path(
-
-    "reports/daily_report.md"
-
-).write_text(
-
-    report,
+    "w",
 
     encoding="utf-8"
 
-)
+) as f:
 
-print("Report Saved")
-
-print("\nDone")
-
-from pathlib import Path
-
-watchlist = Path(
-
-    "knowledge/watchlist.md"
-
-).read_text(
-
-    encoding="utf-8"
-
-)
-
-report = f"""
-
-# Daily Report
-
-日期：
-
-{datetime.now()}
-
----
-
-当前观察池
-
-{watchlist}
-
----
-
-Agent总结：
-
-继续观察主力资金变化。
-
-"""
-
-Path(
-
-    "reports/daily_report.md"
-
-).write_text(
-
-    report,
-
-    encoding="utf-8"
-
-)
+    f.write(report)
