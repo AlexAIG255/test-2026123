@@ -20,8 +20,6 @@ model = genai.GenerativeModel(
 
 )
 
-)
-
 df = pd.read_csv("market_data.csv")
 
 latest = df.iloc[-1]
