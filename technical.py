@@ -9,3 +9,17 @@ def calculate_indicators(df):
     df["MA20"] = df["收盘"].rolling(20).mean()
 
     return df
+
+def macd(df):
+
+    ema12 = df["收盘"].ewm(span=12).mean()
+
+    ema26 = df["收盘"].ewm(span=26).mean()
+
+    df["DIF"] = ema12 - ema26
+
+    df["DEA"] = df["DIF"].ewm(span=9).mean()
+
+    df["MACD"] = (df["DIF"] - df["DEA"]) * 2
+
+    return df
