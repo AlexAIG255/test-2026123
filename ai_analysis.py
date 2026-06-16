@@ -4,15 +4,21 @@ import pandas as pd
 
 import google.generativeai as genai
 
-genai.configure(
+api_key = os.getenv("GEMINI_API_KEY")
 
-    api_key=os.getenv("GEMINI_API_KEY")
+print("Gemini Key:", "OK" if api_key else "EMPTY")
 
-)
+if not api_key:
+
+    raise Exception("GEMINI_API_KEY Secret Missing")
+
+genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel(
 
     "gemini-2.5-flash"
+
+)
 
 )
 
