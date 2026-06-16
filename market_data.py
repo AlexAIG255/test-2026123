@@ -1,13 +1,19 @@
 import requests
 
-url = "https://hq.sinajs.cn/list=sh600409"
+def get_stock(code):
 
-headers = {
+    if code.startswith("6"):
 
-    "Referer": "https://finance.sina.com.cn"
+        symbol=f"sh{code}"
 
-}
+    else:
 
-r = requests.get(url, headers=headers)
+        symbol=f"sz{code}"
 
-print(r.text)
+    url=f"https://qt.gtimg.cn/q={symbol}"
+
+    text=requests.get(url).text
+
+    return text
+
+print(get_stock("600409"))
