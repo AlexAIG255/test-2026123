@@ -49,10 +49,6 @@ jobs:
     - name: Monitor
 
       run: python monitor.py
-
-    - name: Send WeCom
-
-      run: python send_wecom.py
       
     - name: Send WeCom
 
