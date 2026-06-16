@@ -2,40 +2,22 @@ import os
 
 import requests
 
-webhook = os.environ["WECOM_WEBHOOK"]
+webhook = os.getenv("WECOM_WEBHOOK")
 
-with open(
+if not webhook:
 
-    "reports/daily_report.md",
+    raise Exception("WECOM_WEBHOOK not found")
 
-    "r",
-
-    encoding="utf-8"
-
-) as f:
-
-    report = f.read()
-
-payload = {
+msg = {
 
     "msgtype": "text",
 
     "text": {
 
-        "content": report[:4000]
+        "content": "AI Stock Agent 测试成功"
 
     }
 
 }
 
-response = requests.post(
-
-    webhook,
-
-    json=payload,
-
-    timeout=30
-
-)
-
-print(response.text)
+requests.post(webhook, json=msg)
