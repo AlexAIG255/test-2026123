@@ -73,6 +73,14 @@ jobs:
 
       run: python monitor.py
       
+    - name: Realtime Monitor
+
+      env:
+
+        WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK }}
+
+      run: python monitor_realtime.py
+      
     - name: Send WeCom
 
       env:
