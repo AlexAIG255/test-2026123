@@ -53,3 +53,11 @@ jobs:
     - name: Send WeCom
 
       run: python send_wecom.py
+      
+    - name: Send WeCom
+
+      env:
+
+        WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK }}
+
+      run: python send_wecom.py
