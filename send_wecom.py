@@ -4,7 +4,17 @@ import requests
 
 webhook = os.getenv("WECOM_WEBHOOK")
 
-content = """
+with open(
+
+    "analysis_result.txt",
+
+    "r",
+
+    encoding="utf8"
+
+) as f:
+
+    content = f.read()
 
 【三友化工】
 
