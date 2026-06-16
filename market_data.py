@@ -1,9 +1,23 @@
-import requests
+import akshare as ak
 
-code="sh600409"
+import pandas as pd
 
-url=f"https://qt.gtimg.cn/q={code}"
+def get_stock_data(code):
 
-r=requests.get(url)
+    df = ak.stock_zh_a_hist(
 
-print(r.text)
+        symbol=code,
+
+        period="daily",
+
+        adjust="qfq"
+
+    )
+
+    return df.tail(60)
+
+if __name__ == "__main__":
+
+    df = get_stock_data("600409")
+
+    print(df.tail())
