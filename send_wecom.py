@@ -1,19 +1,9 @@
 import os
 
-import requests
-
 webhook = os.getenv("WECOM_WEBHOOK")
 
-msg = {
+print("Webhook =", webhook)
 
-    "msgtype": "text",
+if webhook is None:
 
-    "text": {
-
-        "content": "AI Stock Agent 测试成功"
-
-    }
-
-}
-
-requests.post(webhook, json=msg)
+    raise Exception("Secret Empty")
