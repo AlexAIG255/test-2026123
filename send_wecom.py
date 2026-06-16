@@ -4,7 +4,23 @@ import requests
 
 webhook = os.getenv("WECOM_WEBHOOK")
 
-print("Webhook =", webhook)
+content = """
+
+【三友化工】
+
+当前价格：6.53
+
+MA5：6.42
+
+MA10：6.31
+
+MACD：金叉
+
+AI评分：82
+
+建议：买入
+
+"""
 
 msg = {
 
@@ -12,14 +28,10 @@ msg = {
 
     "text": {
 
-        "content": "AI Stock Agent 测试消息"
+        "content": content
 
     }
 
 }
 
-r = requests.post(webhook, json=msg)
-
-print("Status Code:", r.status_code)
-
-print("Response:", r.text)
+requests.post(webhook, json=msg)
