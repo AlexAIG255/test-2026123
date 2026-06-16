@@ -47,7 +47,7 @@ jobs:
 
         pip install pandas
 
-        pip install akshare
+        pip install akshare==1.17.35
 
         pip install google-generativeai
 
