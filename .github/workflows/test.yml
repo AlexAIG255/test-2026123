@@ -37,20 +37,23 @@ jobs:
         run: |
 
           python monitor.py
-          
-      - name: Test Market Data
+          - name: Market Data
 
-        run: |
+        run: python market_data.py
+        
+      - name: Fund Flow
 
-          python market_data.py
-          
-      - name: Send WeCom Message
+        run: python fund_flow.py
 
-        env:
+      - name: Analysis
+      
+        run: python analysis.py
 
-          WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK }}
+      - name: Monitor
 
-        run: |
+        run: python monitor.py
 
-          python send_wecom.py
+      - name: Send WeCom
+       
+        run: python send_wecom.py
           
