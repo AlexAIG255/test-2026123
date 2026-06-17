@@ -2,6 +2,8 @@ import akshare as ak
 import pandas as pd
 import time
 
+print("V20260617")
+
 def get_stock_data():
     for i in range(5):
         try:
@@ -11,7 +13,7 @@ def get_stock_data():
             symbol="600409",
             period="daily",
             start_date="20240101",
-            end_date="20260630",
+            end_date="20260617",
             adjust=""
         )
 
