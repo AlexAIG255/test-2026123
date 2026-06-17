@@ -51,6 +51,12 @@ jobs:
 
         pip install google-generativeai
 
+    - name: Check Files
+
+      run: |
+        pwd
+        ls -al
+        cat market_data.py
     - name: Market Data
 
       run: python market_data.py
