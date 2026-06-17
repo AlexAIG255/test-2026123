@@ -43,7 +43,7 @@ jobs:
 
       run: |
 
-        pip install tushare
+        pip install akshare pandas
 
         pip install pandas
 
