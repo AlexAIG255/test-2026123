@@ -59,7 +59,12 @@ jobs:
         cat market_data.py
     - name: Market Data
 
-      run: python market_data.py
+      env:
+
+          TUSHARE_TOKEN: ${{ secrets.TUSHARE_TOKEN }}
+     run: |
+         echo "TOKEN_EXISTS=${TUSHARE_TOKEN:+YES}"
+         python market_data.py
 
     - name: Check Files
 
