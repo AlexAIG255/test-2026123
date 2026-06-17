@@ -1,66 +1,38 @@
-import akshare as ak
-
-symbol = "600409"
-
-df = ak.stock_zh_a_spot_em()
-
-stock = df[df["代码"] == symbol]
-
-price = float(stock.iloc[0]["最新价"])
-
-change = float(stock.iloc[0]["涨跌幅"])
-
-print(price)
-
-print(change)
-
-if change >= 5:
-
-    print("暴涨预警")
-
-if change <= -5:
-
-    print("暴跌预警")
-  import os
-
+import os
 import requests
+import pandas as pd
 
-import akshare as ak
+webhook = os.getenv(“WECOM_WEBHOOK”)
 
-webhook = os.getenv("WECOM_WEBHOOK")
+if not webhook:
+raise Exception(“WECOM_WEBHOOK 未配置”)
 
-symbol = "600409"
+df = pd.read_csv(“market_data.csv”)
 
-df = ak.stock_zh_a_spot_em()
+latest = df.iloc[-1]
 
-stock = df[df["代码"] == symbol]
+price = float(latest[“最新价”])
 
-price = float(stock.iloc[0]["最新价"])
+change = float(latest[“涨跌幅”])
 
-change = float(stock.iloc[0]["涨跌幅"])
+alert = None
 
 if change >= 5:
+alert = f”””
+三友化工上涨预警
 
-    msg = {
+当前价格：{price}
 
-        "msgtype": "text",
+涨跌幅：{change}%
+“””
 
-        "text": {
+elif change <= -5:
+alert = f”””
+三友化工下跌预警
 
-            "content":
+当前价格：{price}
 
-            f"""
+涨跌幅：{change}%
+“””
 
-三友化工异动提醒
-
-当前价格:{price}
-
-涨幅:{change}%
-
-            """
-
-        }
-
-    }
-
-    requests.post(webhook, json=msg)
+if alert:
