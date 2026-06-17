@@ -43,15 +43,13 @@ jobs:
 
       run: |
 
-        pip install requests
+        pip install tushare
 
         pip install pandas
 
-        pip install akshare==1.17.35
-
-        pip install pywencai
-        
         pip install google-generativeai
+        
+        pip install requests
 
     - name: Check Files
 
