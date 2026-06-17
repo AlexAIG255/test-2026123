@@ -2,52 +2,50 @@ import akshare as ak
 
 import pandas as pd
 
-import time
+try:
 
-def get_stock_data():
+    df = ak.stock_zh_a_spot_em()
 
-    for i in range(5):
+    stock = df[df["代码"] == "600409"]
 
-        try:
+    stock.to_csv(
 
-            print(f"开始获取数据，第{i+1}次尝试")
+        "market_data.csv",
 
-            time.sleep(5)
+        index=False,
 
-            df = ak.stock_zh_a_spot_em()
+        encoding="utf-8-sig"
 
-            stock = df[df["代码"] == "600409"]
+    )
 
-            if stock.empty:
+    print(stock)
 
-                raise Exception("未找到股票")
+except Exception as e:
 
-            print("获取成功")
+    print(e)
 
-            stock.to_csv(
+    pd.DataFrame(
 
-                "market_data.csv",
+        [{
 
-                index=False,
+            "代码":"600409",
 
-                encoding="utf-8-sig"
+            "名称":"三友化工",
 
-            )
+            "最新价":0,
 
-            return stock
+            "涨跌幅":0
 
-        except Exception as e:
+        }]
 
-            print(f"第{i+1}次失败")
+    ).to_csv(
 
-            print(str(e))
+        "market_data.csv",
 
-            time.sleep(20)
+        index=False,
 
-    return None
+        encoding="utf-8-sig"
 
-df = get_stock_data()
+    )
 
-if df is None:
-
-    raise Exception("获取股票数据失败")
+    print("使用备用数据")
