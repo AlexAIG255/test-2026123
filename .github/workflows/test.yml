@@ -49,6 +49,8 @@ jobs:
 
         pip install akshare==1.17.35
 
+        pip install pywencai
+        
         pip install google-generativeai
 
     - name: Check Files
