@@ -1,67 +1,23 @@
-import akshare as ak
+import requests
 
 import pandas as pd
 
-try:
+url="https://qt.gtimg.cn/q=sh600409"
 
-    df = ak.stock_zh_a_hist(
+r=requests.get(
 
-        symbol="600409",
+    url,
 
-        period="daily",
+    headers={
 
-        adjust=""
+        "User-Agent":"Mozilla/5.0"
 
-    )
+    },
 
-    if df.empty:
+    timeout=10
 
-        raise Exception("未获取到数据")
+)
 
-    latest = df.iloc[-1]
+txt=r.text
 
-    result = pd.DataFrame([
-
-        {
-
-            "代码": "600409",
-
-            "名称": "三友化工",
-
-            "日期": latest["日期"],
-
-            "开盘": latest["开盘"],
-
-            "最高": latest["最高"],
-
-            "最低": latest["最低"],
-
-            "收盘": latest["收盘"],
-
-            "成交量": latest["成交量"],
-
-            "成交额": latest["成交额"]
-
-        }
-
-    ])
-
-    result.to_csv(
-
-        "market_data.csv",
-
-        index=False,
-
-        encoding="utf-8-sig"
-
-    )
-
-    print(result)
-
-    print("market_data.csv 已保存")
-
-except Exception as e:
-
-    print(e)
-
-    raise
+print(txt)
