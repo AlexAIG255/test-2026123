@@ -62,7 +62,7 @@ jobs:
       env:
 
           TUSHARE_TOKEN: ${{ secrets.TUSHARE_TOKEN }}
-     run: |
+      run: |
          echo "TOKEN_EXISTS=${TUSHARE_TOKEN:+YES}"
          python market_data.py
 
