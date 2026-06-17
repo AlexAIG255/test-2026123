@@ -13,6 +13,8 @@ timeout=10
 
 text = r.text
 
+print(text)
+
 parts = text.split(”~”)
 
 if len(parts) < 40:
