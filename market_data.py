@@ -1,51 +1,59 @@
-import akshare as ak
+import os
+
+import tushare as ts
 
 import pandas as pd
 
-try:
+token = os.getenv("TUSHARE_TOKEN")
 
-    df = ak.stock_zh_a_spot_em()
+if not token:
 
-    stock = df[df["代码"] == "600409"]
+    raise Exception("TUSHARE_TOKEN 未配置")
 
-    stock.to_csv(
+ts.set_token(token)
 
-        "market_data.csv",
+pro = ts.pro_api()
 
-        index=False,
+df = pro.daily(
 
-        encoding="utf-8-sig"
+    ts_code="600409.SH"
 
-    )
+)
 
-    print(stock)
+if df.empty:
 
-except Exception as e:
+    raise Exception("未获取到数据")
 
-    print(e)
+latest = df.iloc[0]
 
-    pd.DataFrame(
+result = pd.DataFrame([
 
-        [{
+    {
 
-            "代码":"600409",
+        "代码": "600409",
 
-            "名称":"三友化工",
+        "名称": "三友化工",
 
-            "最新价":0,
+        "最新价": latest["close"],
 
-            "涨跌幅":0
+        "涨跌幅": latest["pct_chg"],
 
-        }]
+        "成交量": latest["vol"]
 
-    ).to_csv(
+    }
 
-        "market_data.csv",
+])
 
-        index=False,
+result.to_csv(
 
-        encoding="utf-8-sig"
+    "market_data.csv",
 
-    )
+    index=False,
 
-    print("使用备用数据")
+    encoding="utf-8-sig"
+
+)
+
+print(result)
+
+print("market_data.csv 已保存")
