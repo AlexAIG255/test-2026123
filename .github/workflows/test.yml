@@ -47,7 +47,7 @@ jobs:
 
         pip install pandas
 
-        pip install google-generativeai
+        pip install google-genai
         
         pip install requests
 
