@@ -1,34 +1,59 @@
 import pandas as pd
 
-try:df = pd.read_csv("market_data.csv")
+try:
 
-latest = df.iloc[-1]
+    df = pd.read_csv("market_data.csv")
 
-name = str(latest["名称"])
-code = str(latest["代码"])
-price = float(latest["最新价"])
-change = float(latest["涨跌幅"])
+    latest = df.iloc[-1]
 
-report = f"""
+    name = str(latest["名称"])
 
-Stock: {name}Code: {code}Price: {price}Change: {change}%"""
+    code = str(latest["代码"])
 
-if change >= 5:
-    report += "\nALERT: STRONG UP MOVE\n"
+    price = float(latest["最新价"])
 
-elif change <= -5:
-    report += "\nALERT: STRONG DOWN MOVE\n"
+    change = float(latest["涨跌幅"])
 
-else:
-    report += "\nStatus: NORMAL\n"
+    report = f"""
 
-print(report)
+Stock: {name}
 
-with open(
-    "daily_report.md",
-    "w",
-    encoding="utf-8"
-) as f:
-    f.write(report)
+Code: {code}
 
-except Exception as e:print("Monitor Error:", e)raise
+Price: {price}
+
+Change: {change}%
+
+"""
+
+    if change >= 5:
+
+        report += "\nALERT: STRONG UP MOVE\n"
+
+    elif change <= -5:
+
+        report += "\nALERT: STRONG DOWN MOVE\n"
+
+    else:
+
+        report += "\nStatus: NORMAL\n"
+
+    print(report)
+
+    with open(
+
+        "daily_report.md",
+
+        "w",
+
+        encoding="utf-8"
+
+    ) as f:
+
+        f.write(report)
+
+except Exception as e:
+
+    print("Monitor Error:", e)
+
+    raise
